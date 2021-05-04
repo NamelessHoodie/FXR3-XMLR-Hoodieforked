@@ -60,7 +60,6 @@
     <Content Include="FXMLRDS3_README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="FXMLR_Template_FXR1.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SoulsFormats\SoulsFormats.csproj">
