@@ -63,12 +63,8 @@
     <Content Include="FXMLR_Template_FXR1.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SoulsFormatsExtensions\SoulsFormatsExtensions.csproj">
-      <Project>{9b4cfa0a-4916-43f1-a0f2-aa9f7690a51b}</Project>
-      <Name>SoulsFormatsExtensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SoulsFormats\SoulsFormats\SoulsFormats.csproj">
-      <Project>{6081dbf1-46ce-4983-a125-71b0133c7b60}</Project>
+    <ProjectReference Include="..\SoulsFormats\SoulsFormats.csproj">
+      <Project>{aeb3720c-e499-4c11-8348-d4a328bd98cf}</Project>
       <Name>SoulsFormats</Name>
     </ProjectReference>
   </ItemGroup>

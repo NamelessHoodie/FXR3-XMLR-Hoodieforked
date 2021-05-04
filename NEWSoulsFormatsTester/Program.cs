@@ -1,5 +1,4 @@
 ﻿using SoulsFormats;
-using SoulsFormatsExtensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -39,10 +38,7 @@ namespace ClusterFXR
 
                 using (var testStream = File.OpenWrite(xmlName))
                 {
-                    using (var xmlWriter = XmlWriter.Create(testStream, new XmlWriterSettings()
-                    {
-                        Indent = true,
-                    }))
+                    using (var xmlWriter = XmlWriter.Create(testStream, new XmlWriterSettings(){Indent = true,}))
                     {
                         var thing = new XmlSerializer(typeof(FXR3));
                         thing.Serialize(xmlWriter, fxr);
