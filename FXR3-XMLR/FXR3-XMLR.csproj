@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2143BE65-6793-476F-9DD7-ADB82E5BB0C1}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ClusterFXR</RootNamespace>
-    <AssemblyName>FXMLRDS3</AssemblyName>
+    <RootNamespace>FXR3XMLR</RootNamespace>
+    <AssemblyName>FXR3-XMLR</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
