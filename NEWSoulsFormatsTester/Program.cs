@@ -394,6 +394,7 @@ namespace ClusterFXR
                     }
                     else if (fileName.EndsWith(".ffx"))
                     {
+                        //var ffx = FXR1.Read(fileName);
                         var ffx = FXR1.Read(fileName, template);
                         ffx.Flatten();
                         WriteFXRXML(ffx, fileName + ".xml");
@@ -517,7 +518,7 @@ namespace ClusterFXR
 
             void TestNewXmlTemplateSystem()
             {
-                
+                //var fxr = FXR1.Read(@"C:\Program Files (x86)\Steam\steamapps\common\DARK SOULS REMASTERED\sfx\FRPG_SfxBnd_m99-ffxbnd-dcx\Sfx\OutputData\Main\Effect_x64\f1241100.ffx");
                 var fxr = FXR1.Read(@"C:\Program Files (x86)\Steam\steamapps\common\DARK SOULS REMASTERED\sfx\FRPG_SfxBnd_m99-ffxbnd-dcx\Sfx\OutputData\Main\Effect_x64\f1241100.ffx", template);
 
                 fxr.Write(@"C:\Program Files (x86)\Steam\steamapps\common\DARK SOULS REMASTERED\sfx\FRPG_SfxBnd_m99-ffxbnd-dcx\Sfx\OutputData\Main\Effect_x64\f1241100_testout.ffx");

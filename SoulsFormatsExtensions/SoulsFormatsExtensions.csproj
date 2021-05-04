@@ -4,18 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2143BE65-6793-476F-9DD7-ADB82E5BB0C1}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ClusterFXR</RootNamespace>
-    <AssemblyName>FXMLRDS3</AssemblyName>
+    <ProjectGuid>{9B4CFA0A-4916-43F1-A0F2-AA9F7690A51B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SoulsFormatsExtensions</RootNamespace>
+    <AssemblyName>SoulsFormatsExtensions</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +24,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,13 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpSerializer.3.0.1\lib\net452\Polenter.SharpSerializer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,26 +43,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="FXR1\DS1RExtraParams.cs" />
+    <Compile Include="FXR1\FXContainer.cs" />
+    <Compile Include="FXR1\FXNodePointer.cs" />
+    <Compile Include="FXR1\FXAction.cs" />
+    <Compile Include="FXR1\FXTransition.cs" />
+    <Compile Include="FXR1\FXState.cs" />
+    <Compile Include="FXR1\FXModifier.cs" />
+    <Compile Include="FXR1\FXField.cs" />
+    <Compile Include="FXR1\FXNode.cs" />
+    <Compile Include="FXR1\FXActionData.cs" />
+    <Compile Include="FXR1\FXR1.cs" />
+    <Compile Include="FXR1\FxrEnvironment.cs" />
+    <Compile Include="FXR1\Ticks.cs" />
+    <Compile Include="FXR1\XIDable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="FXMLRDS3_README.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="FXMLR_Template_FXR1.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SoulsFormatsExtensions\SoulsFormatsExtensions.csproj">
-      <Project>{9b4cfa0a-4916-43f1-a0f2-aa9f7690a51b}</Project>
-      <Name>SoulsFormatsExtensions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SoulsFormats\SoulsFormats\SoulsFormats.csproj">
-      <Project>{6081dbf1-46ce-4983-a125-71b0133c7b60}</Project>
+      <Project>{e4e5fa32-27b3-4639-87c2-6df7006f596d}</Project>
       <Name>SoulsFormats</Name>
     </ProjectReference>
   </ItemGroup>
