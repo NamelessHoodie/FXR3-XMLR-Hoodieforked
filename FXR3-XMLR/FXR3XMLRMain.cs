@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace FXR3XMLR
 {
-    class Program
+    class FXR3XMLRMain
     {
         [STAThread]
         static void Main(string[] args)
