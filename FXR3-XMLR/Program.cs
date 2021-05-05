@@ -11,76 +11,70 @@ namespace FXR3XMLR
         [STAThread]
         static void Main(string[] args)
         {
-            FXR3 ReadFXR3XML(string xmlName)
+            void USAGE()
             {
-                using (var testStream = File.OpenRead(xmlName))
-                {
-                    var test = new XmlSerializer(typeof(FXR3));
-                    var xmlReader = XmlReader.Create(testStream);
-
-
-                    var fxr = (FXR3)test.Deserialize(xmlReader);
-
-                    return fxr;
-                }
+                Console.WriteLine("Usage: FXMLRDS3 < *.fxr | *.fxr.xml >");
+            }
+            if (args.Length < 1)
+            {
+                USAGE();
+                return;
             }
 
-            void WriteFXR3XML(FXR3 fxr, string xmlName)
+            void doArg(string arg)
             {
-                if (File.Exists(xmlName))
-                    File.Delete(xmlName);
-
-                using (var testStream = File.OpenWrite(xmlName))
+                string fileName = arg.ToLower();
+                if (fileName.EndsWith(".fxr.xml"))
                 {
-                    using (var xmlWriter = XmlWriter.Create(testStream, new XmlWriterSettings(){Indent = true,}))
-                    {
-                        var thing = new XmlSerializer(typeof(FXR3));
-                        thing.Serialize(xmlWriter, fxr);
-                    }
+                    var ffx = ReadFXR3XML(fileName);
+                    if (ffx == null)
+                        // Error message already displayed.
+                        return;
+                    ffx.Write(fileName.Substring(0, fileName.Length - 4));
                 }
-            }
-
-            void DOCMD_FXMLRDS3()
-            {
-                void USAGE()
+                else if (fileName.EndsWith(".fxr"))
                 {
-                    Console.WriteLine("Usage: FXMLRDS3 < *.fxr | *.fxr.xml >");
+                    var ffx = FXR3.Read(fileName);
+                    WriteFXR3XML(ffx, fileName + ".xml");
                 }
-                if (args.Length < 1)
+                else
                 {
                     USAGE();
                     return;
                 }
+            }
 
-                void doArg(string arg)
-                {
-                    string fileName = arg.ToLower();
-                    if (fileName.EndsWith(".fxr.xml"))
-                    {
-                        var ffx = ReadFXR3XML(fileName);
-                        if (ffx == null)
-                            // Error message already displayed.
-                            return;
-                        ffx.Write(fileName.Substring(0, fileName.Length - 4));
-                    }
-                    else if (fileName.EndsWith(".fxr"))
-                    {
-                        var ffx = FXR3.Read(fileName);
-                        WriteFXR3XML(ffx, fileName + ".xml");
-                    }
-                    else
-                    {
-                        USAGE();
-                        return;
-                    }
-                }
+            for (int i = 0; i < args.Length; i++)
+            {
+                doArg(args[i]);
+            }
+        }
+        public static FXR3 ReadFXR3XML(string xmlPath)
+        {
+            using (var testStream = File.OpenRead(xmlPath))
+            {
+                var test = new XmlSerializer(typeof(FXR3));
+                var xmlReader = XmlReader.Create(testStream);
 
-                for (int i = 0; i < args.Length; i++)
+
+                var fxr = (FXR3)test.Deserialize(xmlReader);
+
+                return fxr;
+            }
+        }
+        public static void WriteFXR3XML(FXR3 fxr, string newXmlPath)
+        {
+            if (File.Exists(newXmlPath))
+                File.Delete(newXmlPath);
+
+            using (var testStream = File.OpenWrite(newXmlPath))
+            {
+                using (var xmlWriter = XmlWriter.Create(testStream, new XmlWriterSettings() { Indent = true, }))
                 {
-                    doArg(args[i]);
+                    var thing = new XmlSerializer(typeof(FXR3));
+                    thing.Serialize(xmlWriter, fxr);
                 }
             }
-            DOCMD_FXMLRDS3();
         }
     }
 }
