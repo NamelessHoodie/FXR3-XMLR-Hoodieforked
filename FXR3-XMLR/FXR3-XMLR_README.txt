@@ -1,7 +1,3 @@
-# FXR3-XMLR-Hoodieforked
-
-
-
 About:
 FXR3-XMLR is a tool used to convert ".fxr" in a serialized and editable XML Document and vise versa.
 This tool was originally made by @Meowmaritus and is now mantained by @NamelessHoodie.
