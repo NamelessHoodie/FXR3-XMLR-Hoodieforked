@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace FXR3XMLR
@@ -15,6 +16,7 @@ namespace FXR3XMLR
             {
                 Console.WriteLine("Usage: FXMLRDS3 < *.fxr | *.fxr.xml >");
             }
+
             if (args.Length < 1)
             {
                 USAGE();
@@ -26,16 +28,20 @@ namespace FXR3XMLR
                 string fileName = arg.ToLower();
                 if (fileName.EndsWith(".fxr.xml"))
                 {
-                    var ffx = ReadFXR3XML(fileName);
+                    XDocument XMLFXR3 = XDocument.Load(fileName);
+                    if (XMLFXR3 == null)
+                        return;
+                    FXR3 ffx = XMLToFXR3(XMLFXR3);
                     if (ffx == null)
-                        // Error message already displayed.
                         return;
                     ffx.Write(fileName.Substring(0, fileName.Length - 4));
                 }
                 else if (fileName.EndsWith(".fxr"))
                 {
-                    var ffx = FXR3.Read(fileName);
-                    WriteFXR3XML(ffx, fileName + ".xml");
+                    FXR3 ffx = FXR3.Read(fileName);
+                    if (ffx == null)
+                        return;
+                    FXR3ToXML(ffx).Save(fileName + ".xml");
                 }
                 else
                 {
@@ -49,32 +55,24 @@ namespace FXR3XMLR
                 doArg(args[i]);
             }
         }
-        public static FXR3 ReadFXR3XML(string xmlPath)
+        public static FXR3 XMLToFXR3(XDocument XML)
         {
-            using (var testStream = File.OpenRead(xmlPath))
-            {
-                var test = new XmlSerializer(typeof(FXR3));
-                var xmlReader = XmlReader.Create(testStream);
+            XmlSerializer test = new XmlSerializer(typeof(FXR3));
+            XmlReader xmlReader = XML.CreateReader();
 
-
-                var fxr = (FXR3)test.Deserialize(xmlReader);
-
-                return fxr;
-            }
+            return (FXR3)test.Deserialize(xmlReader);
         }
-        public static void WriteFXR3XML(FXR3 fxr, string newXmlPath)
+        public static XDocument FXR3ToXML(FXR3 fxr)
         {
-            if (File.Exists(newXmlPath))
-                File.Delete(newXmlPath);
+            XDocument XDoc = new XDocument();
 
-            using (var testStream = File.OpenWrite(newXmlPath))
+            using (var xmlWriter = XDoc.CreateWriter())
             {
-                using (var xmlWriter = XmlWriter.Create(testStream, new XmlWriterSettings() { Indent = true, }))
-                {
-                    var thing = new XmlSerializer(typeof(FXR3));
-                    thing.Serialize(xmlWriter, fxr);
-                }
+                var thing = new XmlSerializer(typeof(FXR3));
+                thing.Serialize(xmlWriter, fxr);
             }
+
+            return XDoc;
         }
     }
 }
