@@ -1,3 +1,4 @@
+# FXR3-XMLR
 
 About:
 FXR3-XMLR is a tool used to convert ".fxr" in a serialized and editable XML Document and vise versa.
@@ -16,5 +17,3 @@ Usage:
 2. Edit *.fxr.xml in a good text editor like Notepad++
 3. Save the *.fxr.xml
 4. Drag the *.fxr.xml onto FXMLR.exe to repack it to *.fxr
-
-
