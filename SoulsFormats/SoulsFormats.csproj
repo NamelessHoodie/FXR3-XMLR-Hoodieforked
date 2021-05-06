@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net46;netstandard2.1;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net46;netstandard2.1</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	<noWarn>1591</noWarn>
     <Copyright>Copyright © Joseph Anderson 2019</Copyright>
