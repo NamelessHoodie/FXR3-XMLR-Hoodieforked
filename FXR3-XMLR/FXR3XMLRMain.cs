@@ -12,6 +12,7 @@ namespace FXR3XMLR
         [STAThread]
         static void Main(string[] args)
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             void USAGE()
             {
                 Console.WriteLine("Usage: FXMLRDS3 < *.fxr | *.fxr.xml >");
