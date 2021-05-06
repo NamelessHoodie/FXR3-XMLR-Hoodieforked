@@ -1,0 +1,27 @@
+name: .NET
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: windows-latest
+    name: "Build"
+    steps:
+      - uses: actions/checkout@main
+        with:
+          submodules: true
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.x' # SDK Version to use;
+      - name: Restore
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: 'Dantelion-FXR3-Editor-SHA${{ github.sha }}'
+          path: '${{ runner.workspace }}/FXR3-XMLR-Hoodieforked/FXR3-XMLR/bin/Release'
