@@ -1,6 +1,9 @@
 About:
 FXR3-XMLR is a tool used to convert ".fxr" in a serialized and editable XML Document and vise versa.
-This tool was originally made by @Meowmaritus and is now mantained by @NamelessHoodie.
+
+Credits:
+@TKGP Soulsformats.
+@Meowmaritus a modified FXR3 Class  aswell as writing down the original code.
 
 Supported games:
 Dark Souls III, Full support.
