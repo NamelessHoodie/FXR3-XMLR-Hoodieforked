@@ -16,12 +16,18 @@ jobs:
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '5.0.x' # SDK Version to use;
+        
       - name: Restore
         run: dotnet restore
+        
       - name: Build
         run: dotnet build --configuration Release --no-restore
+
+      - name: Publish
+        run: dotnet publish '${{ runner.workspace }}/FXR3-XMLR-Hoodieforked/FXR3-XMLR/FXR3-XMLR.csproj' --configuration Release -o deploy
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: 'Dantelion-FXR3-Editor-SHA${{ github.sha }}'
-          path: '${{ runner.workspace }}/FXR3-XMLR-Hoodieforked/FXR3-XMLR/bin/Release'
+          name: 'FXR3-XMLR-Hoodieforked${{ github.sha }}'
+          path: '${{ runner.workspace }}/FXR3-XMLR-Hoodieforked/deploy'
