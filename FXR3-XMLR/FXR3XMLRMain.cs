@@ -32,14 +32,14 @@ namespace FXR3_XMLR
                     XDocument XMLFXR3 = XDocument.Load(fileName);
                     if (XMLFXR3 == null)
                         return;
-                    FXR3Enhanced ffx = FXR3EnhancedSerialization.XMLToFXR3(XMLFXR3);
+                    FXR3 ffx = FXR3EnhancedSerialization.XMLToFXR3(XMLFXR3);
                     if (ffx == null)
                         return;
                     ffx.Write(fileName.Substring(0, fileName.Length - 4));
                 }
                 else if (fileName.EndsWith(".fxr"))
                 {
-                    FXR3Enhanced ffx = FXR3Enhanced.Read(fileName);
+                    FXR3 ffx = FXR3.Read(fileName);
                     if (ffx == null)
                         return;
                     FXR3EnhancedSerialization.FXR3ToXML(ffx).Save(fileName + ".xml");
