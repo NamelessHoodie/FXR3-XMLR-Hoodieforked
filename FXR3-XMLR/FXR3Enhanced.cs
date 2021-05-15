@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 using SoulsFormats;
 
-namespace FXR3XMLR
+namespace FXR3_XMLR
 {
     /// <summary>
     /// An SFX definition file used in DS3 and Sekiro. Extension: .fxr
@@ -975,6 +977,28 @@ namespace FXR3XMLR
                     field.Write(bw);
                 section11Count += this.Fields.Count;
             }
+        }
+    }
+    public class FXR3EnhancedSerialization
+    {
+        public static FXR3Enhanced XMLToFXR3(XDocument XML)
+        {
+            XmlSerializer test = new XmlSerializer(typeof(FXR3Enhanced));
+            XmlReader xmlReader = XML.CreateReader();
+
+            return (FXR3Enhanced)test.Deserialize(xmlReader);
+        }
+        public static XDocument FXR3ToXML(FXR3Enhanced fxr)
+        {
+            XDocument XDoc = new XDocument();
+
+            using (var xmlWriter = XDoc.CreateWriter())
+            {
+                var thing = new XmlSerializer(typeof(FXR3Enhanced));
+                thing.Serialize(xmlWriter, fxr);
+            }
+
+            return XDoc;
         }
     }
 }
