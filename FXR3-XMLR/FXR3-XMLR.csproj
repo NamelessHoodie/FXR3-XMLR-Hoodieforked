@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FXR3Enhanced.cs" />
     <Compile Include="FXR3XMLRMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -60,8 +61,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SoulsFormats\SoulsFormats.csproj">
-      <Project>{aeb3720c-e499-4c11-8348-d4a328bd98cf}</Project>
+    <ProjectReference Include="..\SoulsFormats\SoulsFormats\SoulsFormats.csproj">
+      <Project>{e9924267-3795-4ceb-8fd3-e0807946a185}</Project>
       <Name>SoulsFormats</Name>
     </ProjectReference>
   </ItemGroup>
